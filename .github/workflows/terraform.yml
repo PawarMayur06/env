@@ -8,7 +8,7 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
+    environment: dev
 
     defaults:
       run:
@@ -25,6 +25,12 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+
+      env:
+        TF_VAR_subscription_id: ${{ secrets.SUBSCRIPTION_ID }}
+        TF_VAR_tenant_id: ${{ secrets.TENANT_ID }}
+        TF_VAR_client_id: ${{ secrets.CLIENT_ID }}
+        TF_VAR_client_secret: ${{ secrets.CLIENT_SECRET }}
 
     - name: Terraform plan
       run: terraform plan -input=false
