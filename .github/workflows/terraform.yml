@@ -2,7 +2,7 @@ name: 'Terraform in DEV Environment'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   terraform:
