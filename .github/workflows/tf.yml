@@ -31,7 +31,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -input=false -var="AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" -var="AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}" -var="AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" -var="AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" -var="AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}" -var="AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" -var="AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
