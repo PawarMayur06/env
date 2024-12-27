@@ -1,9 +1,7 @@
 resource "azurerm_resource_group" "example" {
-  name     = "github"
+  name     = "mayurgithub"
   location = "Central India"
   tags = {
     Environment = "github-aactions"
   }
 }
-
-#heyyy
