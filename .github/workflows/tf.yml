@@ -36,7 +36,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-
+      - name: Debug Environment Variables
+        run: |
+          echo "Client ID: $AZURE_CLIENT_ID"
+          echo "Client Secret: $AZURE_CLIENT_SECRET"
+          echo "Tenant ID: $AZURE_TENANT_ID"
+          echo "Subscription ID: $AZURE_SUBSCRIPTION_ID"
       - name: Terraform Plan
         run: terraform plan -input=false  
         env:
