@@ -1,11 +1,11 @@
-variable "azure_subscription_id" { 
+variable "AZURE_CLIENT_ID" { 
 }
 
-variable "azure_tenant_id" {  
+variable "AZURE_CLIENT_SECRET" {  
 }
 
-variable "azure_client_id" {  
+variable "AZURE_SUBSCRIPTION_ID" {  
 }
 
-variable "azure_client_secret" {  
+variable "AZURE_TENANT_ID" {  
 }
