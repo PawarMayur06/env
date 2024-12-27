@@ -33,14 +33,20 @@ jobs:
         AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
 
     - name: Terraform Plan
-      run: terraform plan -input=false \
-            -var="subscription_id=${{ secrets.SUBSCRIPTION_ID }}" \
-            -var="tenant_id=${{ secrets.TENANT_ID }}" \
-            -var="client_id=${{ secrets.CLIENT_ID }}" \
-            -var="client_secret=${{ secrets.CLIENT_SECRET }}"
+      run: terraform plan -input=false 
+      env:
+        AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        AZURE_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        AZURE_TENANT_ID: ${{ secrets.TENANT_ID }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
     
 
     - name: Terraform Apply
       run: terraform apply --auto-approve
+      env:
+        AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        AZURE_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        AZURE_TENANT_ID: ${{ secrets.TENANT_ID }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
 
  
