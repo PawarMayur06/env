@@ -9,11 +9,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: dev
-
-    defaults:
-      run:
-        shell: bash
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -25,28 +21,16 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-
-      env:
-        AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        AZURE_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        AZURE_TENANT_ID: ${{ secrets.TENANT_ID }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-
+  
     - name: Terraform Plan
-      run: terraform plan -input=false 
-      env:
-        AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        AZURE_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        AZURE_TENANT_ID: ${{ secrets.TENANT_ID }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-    
-
+      run: terraform plan -out=tfplan
+  
     - name: Terraform Apply
-      run: terraform apply --auto-approve
+      run: terraform apply -auto-approve tfplan
       env:
-        AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        AZURE_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        AZURE_TENANT_ID: ${{ secrets.TENANT_ID }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+        ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
 
  
