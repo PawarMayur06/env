@@ -26,17 +26,19 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          auth-type: 'SERVICE_PRINCIPAL'  
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+            }
 
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -input=false -out=tfplan  
+        run: terraform plan -input=false  
 
       - name: Terraform Apply
-        run: terraform apply -input=false tfplan  
+        run: terraform apply -input=false   
