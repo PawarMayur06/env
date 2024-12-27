@@ -65,7 +65,14 @@ jobs:
           echo "AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}" >> $GITHUB_ENV
           echo "AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
           echo "AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
-
+        
+      - name: Debug environment variables
+        run: |
+          echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"
+          echo "AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET"
+          echo "AZURE_TENANT_ID=$AZURE_TENANT_ID"
+          echo "AZURE_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID"
+        
       - name: Terraform Init
         run: terraform init
 
